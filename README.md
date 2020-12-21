@@ -2,7 +2,7 @@
 
 This sample repository is to outline a basic setup for a remotr Jenkins server on AWS alongside a basic CI pipeline.
 
-This example has a single primary aster node for Jenkins, with no secondary nodes for autoscaling.
+This example has a single primary aster node for Jenkins, with no secondary nodes for autoscaling..
 
 ## Jenkins on AWS Setup
 
