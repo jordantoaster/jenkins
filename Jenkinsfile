@@ -3,13 +3,16 @@ pipeline {
   environment {
     registry = "jordantoaster/jenkins-example"
     registryCredential = 'dockerhub'
+    dockerImage = ''
   }
 
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-  }  
+//   agent {
+//     dockerfile {
+//       filename 'Dockerfile'
+//     }
+//   }  
+
+  agent any
 
   stages {
     stage('test') {
@@ -17,7 +20,7 @@ pipeline {
         sh 'python -m pytest'
       }   
     }
-    
+
     stage('Building image') {
       steps{
         script {
@@ -25,5 +28,20 @@ pipeline {
         }
       }
     }
-  }
+
+    stage('Deploy Image') {
+        steps{
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                }
+            }
+        }
+    }
+
+    stage('Remove Unused docker image') {
+        steps{
+            sh "docker rmi $registry:$BUILD_NUMBER"
+        }
+    }
 }
