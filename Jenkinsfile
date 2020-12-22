@@ -6,17 +6,25 @@ pipeline {
     dockerImage = ''
   }
 
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-  }  
+//   agent {
+//     dockerfile {
+//       filename 'Dockerfile'
+//     }
+//   }  
+
+  agent any
 
   stages {
-    stage('test') {
+//     stage('test') {
+//       steps {
+//         sh 'python -m pytest'
+//       }   
+//     }
+
+    stage('Cloning Git') {
       steps {
-        sh 'python -m pytest'
-      }   
+        git 'https://github.com/jordantoaster/jenkins.git'
+      }
     }
 
     stage('Building image') {
