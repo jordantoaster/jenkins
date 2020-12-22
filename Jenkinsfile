@@ -6,12 +6,7 @@ pipeline {
     dockerImage = ''
   }
 
-//   agent {
-//     dockerfile {
-//       filename 'Dockerfile'
-//     }
-//   }  
-
+  // default agent
   agent any
 
   stages {
@@ -24,7 +19,7 @@ pipeline {
 
     stage('test') {
 
-        agent {
+        agent { // use project docker file to run the tests
             dockerfile {
                 filename 'Dockerfile'
             }
@@ -35,7 +30,7 @@ pipeline {
         }   
     }
 
-    stage('Building image') {
+    stage('Building image') { // use the docker file to build.
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
