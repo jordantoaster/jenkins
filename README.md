@@ -10,7 +10,7 @@ This example has a single primary aster node for Jenkins, with no secondary node
 
 2. SSH into your EC2 Machine.
 
-3. Update the stock packages - ``sudo yum update –y``
+3. Update the stock packages - ``sudo yum update –y`` - install Git ``sudo yum install git -y``
 
 4. Ensure you have the 1.8 version of Java - ``sudo yum install java-1.8.0`` + ``sudo yum remove java-1.7.0-openjdk``
 
@@ -26,7 +26,9 @@ This example has a single primary aster node for Jenkins, with no secondary node
 
 10. Run ``sudo cat /var/lib/jenkins/secrets/initialAdminPassword`` to get your initial Jenkins admin password inside your SSH terminal, enter the result into the 'unlock' screen of Jenkins.
 
-11. Install the recommended set of plugins for Jenkins.
+11. Install the recommended set of plugins for Jenkins - also install the docker plugin
+
+12. Navigate to ````
 
 Now you can create users and pipelines as required.
 
