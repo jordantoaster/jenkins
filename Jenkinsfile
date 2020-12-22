@@ -15,16 +15,17 @@ pipeline {
   agent any
 
   stages {
-//     stage('test') {
-//       steps {
-//         sh 'python -m pytest'
-//       }   
-//     }
 
     stage('Cloning Git') {
       steps {
         git 'https://github.com/jordantoaster/jenkins.git'
       }
+    }
+
+    stage('test') {
+      steps {
+        sh 'python -m pytest'
+      }   
     }
 
     stage('Building image') {
