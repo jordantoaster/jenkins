@@ -23,9 +23,16 @@ pipeline {
     }
 
     stage('test') {
-      steps {
-        sh 'python -m pytest'
-      }   
+
+        agent {
+            dockerfile {
+                filename 'Dockerfile'
+            }
+        }  
+
+        steps {
+            sh 'python -m pytest'
+        }   
     }
 
     stage('Building image') {
