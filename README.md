@@ -28,7 +28,9 @@ This example has a single primary aster node for Jenkins, with no secondary node
 
 11. Install the recommended set of plugins for Jenkins - also install the docker plugin
 
-12. Navigate to ````
+12. Install Docker - ``sudo yum install docker`` and start it ``sudo service docker start``
+
+13. Give the jenkins user access to docker ``sudo chmod 777 /var/run/docker.sock`` - log out and into terminal again + restart jenkins.
 
 Now you can create users and pipelines as required.
 
