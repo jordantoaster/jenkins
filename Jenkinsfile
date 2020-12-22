@@ -6,13 +6,11 @@ pipeline {
     dockerImage = ''
   }
 
-//   agent {
-//     dockerfile {
-//       filename 'Dockerfile'
-//     }
-//   }  
-
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
+    }
+  }  
 
   stages {
     stage('test') {
