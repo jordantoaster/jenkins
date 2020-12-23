@@ -1,8 +1,8 @@
 pipeline {
 
   environment {
-    registry = $params.docker-hub-repository // target Jenkins Repository - parameter input on build
-    registryCredential = 'dockerhub' // registered in Jenknis credentials
+    registry = ${params.docker-hub-repository} // target Jenkins Repository - parameter input on build
+    registryCredential = 'dockerhub' // registered in Jenkins credentials
     dockerImage = ''
   }
 
