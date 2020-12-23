@@ -1,8 +1,7 @@
 ## Overview
 
-This sample repository is to outline a basic setup for a remotr Jenkins server on AWS alongside a basic CI pipeline.
+This sample repository is to outline a basic setup for a remote Jenkins server on AWS alongside a basic CI pipeline.
 
-This example has a single primary aster node for Jenkins, with no secondary nodes for autoscaling..
 
 ## Jenkins on AWS Setup
 
@@ -34,5 +33,37 @@ This example has a single primary aster node for Jenkins, with no secondary node
 
 Now you can create users and pipelines as required.
 
-## Pipeline Example Overview
+## Pipeline Overview
 
+The pipeline is setup so that the infrustructure and contanier setup is defined in code via a ``Dockerfile`` and ``Jenkinsfile``.
+
+The pipeline is configured initially on the Ec2 micro box via the Jenkins user interface, in which parameters and source code references are defined, in this case to Github.
+
+The pipeline performs a few basic steps:
+
+1. It is triggered manually by the user un the Jenkins UI.
+2. The repository is cloned from Master.
+3. The unit tests are run within a docker agent, which reflects the development environment and deployed artifact.
+4. The Docker image is created.
+5. The docker image is pushed to docker hub.
+6. The image created locally in Jenkins is deleted.
+
+![](images/pipeline.PNG)
+![](images/dockerhub.PNG)
+
+
+## Improvements
+
+1. Bundle Jenkins setup into a DockerFile on EC2, including all the currently manual ``yum`` installation steps.
+
+2. Convert basic app to be a simple flask app - modify pipeline to deploy image onto a EC2 server to simulate a deployment.
+
+3. Expand on the above to have dev and production environment selection built into the pipeline.
+
+4. Production may not need the tests to be copied into the image.
+
+5. Consider a multi branch variant of this pipeline.
+
+6. Consider non manual approaches, polling in a more CD fashion.
+
+7. Consider how primary and secondary nodes can be used for autoscaling.
